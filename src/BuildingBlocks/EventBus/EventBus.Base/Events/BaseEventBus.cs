@@ -13,9 +13,9 @@ namespace EventBus.Base.Events
     public abstract class BaseEventBus : IEventBus
     {
         public readonly IServiceProvider _serviceProvider;
-        public readonly IEventBusSubscriptionManager _eventBusSubscriptionManager;
+        public  IEventBusSubscriptionManager _eventBusSubscriptionManager;
 
-        private EventBusConfig _config;
+        public EventBusConfig _config { get; set; }
 
 
         protected BaseEventBus(IServiceProvider serviceProvider, EventBusConfig config)
@@ -45,6 +45,9 @@ namespace EventBus.Base.Events
         public virtual void Dispose()
         {
             _config = null;
+            _eventBusSubscriptionManager = null;
+
+           
         }
         public async Task<bool>ProcessEvent(string eventName,string message)
         {
