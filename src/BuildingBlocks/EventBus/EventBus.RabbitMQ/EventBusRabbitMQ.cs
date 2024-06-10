@@ -170,7 +170,7 @@ namespace EventBus.RabbitMQ
         private async void Consumer_Received(object? sender, BasicDeliverEventArgs e)
         {
             var eventName = e.RoutingKey;
-            eventName = ProcessEventName(eventName);
+            eventName = ProcessEventName(eventName);    
             var message = Encoding.UTF8.GetString(e.Body.Span);
             try
             {
