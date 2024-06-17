@@ -26,8 +26,10 @@ builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<CatalogSettin
 
 // Configure the DbContext
 builder.Services.ConfigureDbContext(builder.Configuration);
+builder.Services.ConfigureConsul(builder.Configuration);
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -36,10 +38,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+
 
 // Apply database migrations and seed data
 using (var scope = app.Services.CreateScope())
@@ -48,6 +52,7 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var context = services.GetRequiredService<CatalogContext>();
+
         var env = services.GetRequiredService<IWebHostEnvironment>();
         var logger = services.GetRequiredService<ILogger<CatalogContextSeed>>();
 
@@ -63,5 +68,7 @@ using (var scope = app.Services.CreateScope())
         logger.LogError(ex, "An error occurred while migrating or seeding the database.");
     }
 }
+var lifetime = app.Services.GetRequiredService<IHostApplicationLifetime>();
 
+app.RegisterWithConsul(lifetime);
 app.Run();
