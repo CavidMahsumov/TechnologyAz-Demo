@@ -39,7 +39,7 @@ namespace IdentityService.Api.Extensions.Registration
                 Tags = new[] { "Identity Service", "Identity" }
             };
             logger.LogInformation("Registering with Consul");
-            consulClient.Agent.ServiceDeregister(registration.ID).Wait();
+            //consulClient.Agent.ServiceDeregister(registration.ID).Wait();
             consulClient.Agent.ServiceRegister(registration).Wait();
 
             lifetime.ApplicationStopping.Register(() =>

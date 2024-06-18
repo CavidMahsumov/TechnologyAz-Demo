@@ -8,9 +8,9 @@ namespace BasketService.Api.Extensions
 {
     public static class AuthRegistration
     {
-        public static IServiceCollection ConfigureAuth(this IServiceCollection services,IConfiguration config)
+        public static IServiceCollection ConfigureAuth(this IServiceCollection services, IConfiguration config)
         {
-            var singingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(config["AuthConfig:Secret"]));
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(config["AuthConfig:Secret"]));
 
             services.AddAuthentication(opt =>
             {
@@ -24,7 +24,7 @@ namespace BasketService.Api.Extensions
                     ValidateAudience = false,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = singingKey
+                    IssuerSigningKey = signingKey,
                 };
             });
 

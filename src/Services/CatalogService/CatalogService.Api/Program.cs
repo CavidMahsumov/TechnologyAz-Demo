@@ -26,7 +26,7 @@ builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<CatalogSettin
 
 // Configure the DbContext
 builder.Services.ConfigureDbContext(builder.Configuration);
-builder.Services.ConfigureConsul(builder.Configuration);
+//builder.Services.ConfigureConsul(builder.Configuration);
 
 var app = builder.Build();
 
@@ -70,5 +70,5 @@ using (var scope = app.Services.CreateScope())
 }
 var lifetime = app.Services.GetRequiredService<IHostApplicationLifetime>();
 
-app.RegisterWithConsul(lifetime);
+//app.RegisterWithConsul(lifetime);
 app.Run();

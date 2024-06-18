@@ -13,7 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IIdentityService, IdentityService.Api.Application.Services.IdentityService>();
-builder.Services.ConfigureConsul(builder.Configuration);
+//builder.Services.ConfigureConsul(builder.Configuration);
 
 var app = builder.Build();
 
@@ -41,8 +41,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-var lifetime = app.Services.GetRequiredService<IHostApplicationLifetime>();
+//var lifetime = app.Services.GetRequiredService<IHostApplicationLifetime>();
 
-app.RegisterWithConsul(lifetime);
+//app.RegisterWithConsul(lifetime);
 
 app.Run();

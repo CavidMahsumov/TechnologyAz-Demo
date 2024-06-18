@@ -1,6 +1,7 @@
 ﻿using BasketService.Api.Core.Application.Repository;
 using BasketService.Api.Core.Application.Services;
 using BasketService.Api.Core.Domain.Models;
+using BasketService.Api.IntegrationEvents.Events;
 using EventBus.Base.Abstraction;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -62,6 +63,46 @@ namespace BasketService.Api.Controllers
             await _repository.UpdateBasketAsync(basket);
             return Ok();
         }
+
+        [Route("checkout")]
+        [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.Accepted)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult> CheckoutAsync([FromBody] BasketCheckout basketCheckout)
+        {
+            var userId = basketCheckout.Buyer;
+            var basket = await _repository.GetBasketAsync(userId);
+            if (basket == null)
+            {
+                return BadRequest();
+            }
+            var username = _identityService.GetUserName();
+            var eventMessage = new OrderCreatedIntegrationEvent(userId, username, basketCheckout.City, basketCheckout.Street, basketCheckout.State, basketCheckout.Country, basketCheckout.ZipCode, basketCheckout.CardNumber, basketCheckout.CardHolderName, basketCheckout.CardExpiration, basketCheckout.CardSecurityNumber,
+               basketCheckout.CardTypeId, basketCheckout.Buyer, basketCheckout.RequestId,basket);
+
+
+            try
+            {
+                _eventBus.Publish(eventMessage);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("ERROR Publishing integration event : {IntegrationEventId} from {BasketService.App}", eventMessage.Id);
+                throw;
+            }
+
+            return Accepted();
+        }
+        //public OrderCreatedIntegrationEvent(string userId, string userName, string city, string street, string state, string country, string zipCode, string cardNumber, string cardHolderName, string cardExpiration, string cardSecurityNumber, int cartTypeId, string buyer, Guid requestId, CustomerBasket basket)
+        [HttpDelete("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task DeleteBasketByIdAsync(string id)
+        {
+            await _repository.DeleteBasketAsync(id);
+        }
+
+
+
 
     }
 }

@@ -11,7 +11,7 @@
         public string CardHolderName { get; set; }
         public string CardExpiration { get; set; }
         public string CardSecurityNumber { get; set; }
-        public int CartTypeId { get; set; }
+        public int CardTypeId { get; set; }
         public string Buyer { get; set; }
         public Guid RequestId { get; set; }
     }
