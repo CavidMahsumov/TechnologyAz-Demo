@@ -1,4 +1,5 @@
-﻿using OrderService.Domain.Events;
+﻿using OrderService.Domain.AggregateModels.BuyerAggregate;
+using OrderService.Domain.Events;
 using OrderService.Domain.SeedWork;
 using System;
 using System.Collections.Generic;
