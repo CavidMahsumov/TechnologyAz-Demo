@@ -12,13 +12,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddOcelot();/*.AddConsul();*/
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy",
+       builder => builder.SetIsOriginAllowed((host) => true)
+       .AllowAnyMethod()
+       .AllowAnyHeader()
+       .AllowCredentials());
+});
 
 builder.Configuration.AddJsonFile("Configurations/ocelot.json");
 
 
-
 var app = builder.Build();
-
+app.UseCors("CorsPolicy");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

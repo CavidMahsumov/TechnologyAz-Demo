@@ -88,6 +88,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "redis", "redis", "{6F06B1B6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sqlserver", "sqlserver", "{4A2F2817-6F3B-48E2-A1FA-3146D30E3C08}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.Blazor", "WebApp.Blazor\WebApp.Blazor.csproj", "{61B9B87F-B27A-4C4C-872E-52D683A6EBFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -158,6 +160,10 @@ Global
 		{2744F41E-039F-4A0E-820D-708AD29EBED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2744F41E-039F-4A0E-820D-708AD29EBED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2744F41E-039F-4A0E-820D-708AD29EBED2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61B9B87F-B27A-4C4C-872E-52D683A6EBFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61B9B87F-B27A-4C4C-872E-52D683A6EBFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B9B87F-B27A-4C4C-872E-52D683A6EBFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61B9B87F-B27A-4C4C-872E-52D683A6EBFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -197,6 +203,7 @@ Global
 		{65546AE4-ABE8-4F64-9E62-175808F52165} = {C9DD86D7-B2CE-4EBE-B4B7-E4AB75D5EA48}
 		{6F06B1B6-7097-45A1-A331-3F1555F708B2} = {C9DD86D7-B2CE-4EBE-B4B7-E4AB75D5EA48}
 		{4A2F2817-6F3B-48E2-A1FA-3146D30E3C08} = {C9DD86D7-B2CE-4EBE-B4B7-E4AB75D5EA48}
+		{61B9B87F-B27A-4C4C-872E-52D683A6EBFD} = {70C5CB1C-8CA5-41AE-BF0C-40D80189D37E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86EEF211-8182-4A56-9BE8-441D4B793F28}

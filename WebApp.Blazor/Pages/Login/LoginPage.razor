@@ -1,0 +1,48 @@
+﻿@page "/login"
+@using WebApp.Application.Services.Interfaces
+@using WebApp.Domain.Models.User
+@using System.Web
+
+<div class="container-fluid-h100">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+            <EditForm Model="@userLoginRequest" OnValidSubmit="LoginProcess">
+                <DataAnnotationsValidator />
+
+                <div class="form-group">
+                    <input @bind-value="userLoginRequest.UserName" class="form-control form-control-lg" type="text" placeholder="User Name" />
+                </div>
+
+                <div class="form-group">
+                    <input @bind-value="userLoginRequest.Password" class="form-control form-control-lg" type="password" placeholder="Password" />
+                      
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-info btn-block" >Login</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject]
+    IIdentityService IdentityService { get; set; }
+
+    [Inject]
+    NavigationManager NavigationManager { get; set; }
+
+    public UserLoginRequest userLoginRequest = new UserLoginRequest("", "");
+
+    private async Task LoginProcess()
+    {
+        var res = await IdentityService.Login(userLoginRequest.UserName, userLoginRequest.Password);
+        if (res)
+        {
+            var coll = HttpUtility.ParseQueryString(new Uri(NavigationManager.Uri).Query);
+            string returnUrl = coll.Get("returnUrl") ?? "/";
+            NavigationManager.NavigateTo(returnUrl);
+        }
+    }
+}
