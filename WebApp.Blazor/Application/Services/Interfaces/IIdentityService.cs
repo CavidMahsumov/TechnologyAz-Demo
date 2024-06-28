@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace WebApp.Application.Services.Interfaces
+namespace WebApp.Blazor.Application.Services.Interfaces
 {
     public interface IIdentityService
     {

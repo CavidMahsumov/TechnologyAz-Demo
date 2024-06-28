@@ -121,9 +121,9 @@ namespace CatalogService.Api.Infrastructure.Context
                 {
                     new CatalogItem(){ CatalogTypeId=2, CatalogBrandId=1, AvailableStock=100, Description=".NET Bot Black Hoodie", Name=".NET Bot Black Hoodie", Price=20, PictureFileName="1.png", OnReorder=false },
                     new CatalogItem(){ CatalogTypeId=1, CatalogBrandId=2, AvailableStock=100, Description=".NET Black &White Mug", Name=".NET Black &White Mug", Price=8, PictureFileName="2.png", OnReorder=true },
-                    new CatalogItem(){ CatalogTypeId=2, CatalogBrandId=5, AvailableStock=100, Description="Prism White T - Shirt", Name="Prism White T - Shirt", Price=12, PictureFileName="3.png", OnReorder=false },
-                    new CatalogItem(){ CatalogTypeId=2, CatalogBrandId=2, AvailableStock=100, Description=".NET Foundation T - Shirt", Name=".NET Foundation T - Shirt", Price=12, PictureFileName="4.png", OnReorder=false },
-                    new CatalogItem(){ CatalogTypeId=3, CatalogBrandId=5, AvailableStock=100, Description="Roslyn Red Sheet", Name="Roslyn Red Sheet", Price=8, PictureFileName="5.png", OnReorder=false },
+                    new CatalogItem(){ CatalogTypeId=2, CatalogBrandId=5, AvailableStock=100, Description="Prism White T - Shirt", Name="Prism White T - Shirt", Price=12, PictureFileName="2.png", OnReorder=false },
+                    new CatalogItem(){ CatalogTypeId=2, CatalogBrandId=2, AvailableStock=100, Description=".NET Foundation T - Shirt", Name=".NET Foundation T - Shirt", Price=12, PictureFileName="2.png", OnReorder=false },
+                    new CatalogItem(){ CatalogTypeId=3, CatalogBrandId=5, AvailableStock=100, Description="Roslyn Red Sheet", Name="Roslyn Red Sheet", Price=8, PictureFileName="2.png", OnReorder=false },
                 };
             }
 

@@ -4,12 +4,12 @@ using WebApp;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
 using WebApp.Utils;
-using WebApp.Application.Services.Interfaces;
-using WebApp.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net.Http;
 using System;
 using WebApp.Blazor;
+using WebApp.Blazor.Application.Services.Interfaces;
+using WebApp.Blazor.Application.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -20,7 +20,9 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 builder.Services.AddBlazoredLocalStorage();
 
-builder.Services.AddTransient<IIdentityService, WebApp.Application.Services.IdentityService>();
+builder.Services.AddScoped<IIdentityService, IdentityService>();
+builder.Services.AddScoped<ICatalogService,CatalogService>();
+
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
 builder.Services.AddScoped(sp =>
 {

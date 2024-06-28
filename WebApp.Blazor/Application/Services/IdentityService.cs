@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http;
 using System.Net.Security;
 using System.Threading.Tasks;
-using WebApp.Application.Services.Interfaces;
+using WebApp.Blazor.Application.Services.Interfaces;
 using WebApp.Domain.Models.User;
 using WebApp.Extensions;
 
-namespace WebApp.Application.Services
+namespace WebApp.Blazor.Application.Services
 {
     public class IdentityService : IIdentityService
     {

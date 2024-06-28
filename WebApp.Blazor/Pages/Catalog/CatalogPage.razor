@@ -1,0 +1,31 @@
+﻿@page "/catalog"
+@using WebApp.Blazor.Application.Services
+@using WebApp.Blazor.Application.Services.Interfaces
+@using WebApp.Blazor.Domain.Models
+@using WebApp.Blazor.Domain.Models.CatalogModels
+
+<div class="row">
+    @if(model.Data!=null && model.Data.Any())
+    {
+        foreach (var item in model.Data)
+        {
+            <WebApp.Blazor.Components.Catalog.ProductView.ProductView CatalogItem="item" OnClick="()=>AddToCart(item)"></WebApp.Blazor.Components.Catalog.ProductView.ProductView>
+        }
+    }
+</div>
+
+@code {
+    PaginatedItemViewModel<CatalogItem> model = new PaginatedItemViewModel<CatalogItem>();
+    [Inject]
+    ICatalogService catalogService{ get; set; }
+
+    protected async  override Task OnInitializedAsync()
+    {
+       model= await catalogService.GetCatalogItem();    
+    }
+
+    public async Task AddToCart(CatalogItem item)
+    {
+        await Task.CompletedTask;
+    }
+}

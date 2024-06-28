@@ -88,7 +88,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "redis", "redis", "{6F06B1B6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sqlserver", "sqlserver", "{4A2F2817-6F3B-48E2-A1FA-3146D30E3C08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.Blazor", "WebApp.Blazor\WebApp.Blazor.csproj", "{61B9B87F-B27A-4C4C-872E-52D683A6EBFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp.Blazor", "WebApp.Blazor\WebApp.Blazor.csproj", "{61B9B87F-B27A-4C4C-872E-52D683A6EBFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

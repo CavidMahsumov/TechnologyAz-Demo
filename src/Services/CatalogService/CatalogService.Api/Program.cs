@@ -1,10 +1,13 @@
 using CatalogService.Api.Extensions;
 using CatalogService.Api.Infrastructure;
 using CatalogService.Api.Infrastructure.Context;
+using Consul;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -12,7 +15,15 @@ using System;
 using System.IO;
 using System.Reflection;
 
-var builder = WebApplication.CreateBuilder(args);
+var options = new WebApplicationOptions
+{
+    Args = args,
+    ContentRootPath = Directory.GetCurrentDirectory(),
+    WebRootPath = "Pics"
+};
+var builder = WebApplication.CreateBuilder(options);
+builder.WebHost.UseWebRoot("Pics");
+builder.WebHost.UseContentRoot(Directory.GetCurrentDirectory());
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -42,6 +53,12 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(System.IO.Path.Combine(app.Environment.ContentRootPath,"Pics")),
+    RequestPath="/pics"
+    
+});
 
 
 

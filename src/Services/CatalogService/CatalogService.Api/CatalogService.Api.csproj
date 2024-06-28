@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="Infrastructure\Pics\" />
+    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>
