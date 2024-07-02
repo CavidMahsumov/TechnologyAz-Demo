@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using WebApp.Extensions;
 
-namespace WebApp.Utils
+namespace WebApp.Blazor.Utils
 {
     public class AuthStateProvider : AuthenticationStateProvider
     {

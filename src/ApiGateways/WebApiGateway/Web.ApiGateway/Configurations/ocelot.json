@@ -29,8 +29,8 @@
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
-      //"UseServiceDiscovery": true,
-      //"ServiceName": "CatalogService",
+      "UseServiceDiscovery": true,
+      "ServiceName": "CatalogService",
       "DownstreamPathTemplate": "/api/basket/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [

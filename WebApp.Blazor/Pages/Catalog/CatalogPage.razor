@@ -18,14 +18,26 @@
     PaginatedItemViewModel<CatalogItem> model = new PaginatedItemViewModel<CatalogItem>();
     [Inject]
     ICatalogService catalogService{ get; set; }
+    [Inject]
+    IIdentityService identityService{ get; set; }
+
+    [Inject]
+    IBasketService basketService { get; set; }
+
+    NavigationManager navigationManager { get; set; }
 
     protected async  override Task OnInitializedAsync()
     {
-       model= await catalogService.GetCatalogItem();    
+        model= await catalogService.GetCatalogItem();    
     }
 
     public async Task AddToCart(CatalogItem item)
     {
-        await Task.CompletedTask;
+        if (!identityService.IsLoggedIn)
+        {
+            navigationManager.NavigateTo($"login?returnUrl={Uri.EscapeDataString(navigationManager.Uri)}", true);
+            return;
+        }
+        await basketService.AddItemToBasket(item.Id);
     }
 }

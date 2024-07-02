@@ -16,20 +16,63 @@ else
 
 @code {
     [Inject]
+    IBasketService basketService { get; set; }
+    [Inject]
     IIdentityService identityService { get; set; }
     [Inject]
     ILocalStorageService localstroge { get; set; }
     [Inject]
     NavigationManager navigationManager { get; set; }
+    // [Inject]
+    // AppState appState { get; set; }
+
 
     private int basketItemCount = 0;
 
-    private bool isLogedIn;
+    bool isLogedIn=false;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        // if (firstRender)
+        //     appState.StateChanged += async (source, property) => await AppState_StateChanged(source, property); 
+
+    }
+
 
     protected  override Task OnInitializedAsync()
     {
         isLogedIn = identityService.IsLoggedIn;
         return base.OnInitializedAsync();
+    }
+    private async Task<int> calculateItemCount()
+    {
+        isLogedIn = identityService.IsLoggedIn;
+        if (!isLogedIn)
+        {
+            return 0;
+        }
+        var basket = await basketService.GetBasket();
+        var count = basket.Items == null ? 0 : basket.Items.Sum(i => i.Quantity);
+        basketItemCount = count;
+        return count;
+    }
+    private async Task AppState_StateChanged(ComponentBase source,string property)
+    {
+        if (source == this)
+        {
+            return;
+        }
+        if (property == "increase")
+            basketItemCount++;
+        else if (property == "updatebasket")
+        {
+            await calculateItemCount();
+        }
+        else if (property == "login")
+        {
+            await calculateItemCount();
+        }
+        await InvokeAsync(StateHasChanged);
     }
     private void GoLoginPage()
     {
